@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+dist/
+build/
+htmlcov/
+docs_build/
+docs/api/
+.env
+.env.development
+.env.production
+.idea/
+.vscode/
