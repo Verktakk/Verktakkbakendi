@@ -10,6 +10,9 @@ dbpassword = os.getenv('DBPASSWORD')
 DATABASE_URL = f"postgresql://maxhgeaz:{dbpassword}@trumpet.db.elephantsql.com/maxhgeaz"
 engine = create_engine(DATABASE_URL, connect_args={"sslmode": "require"})
 
+# Each instance of the SessonLocal class will be a db session
+# See main.py where we inistialize a db session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+#  Later we will inherit from this Base to create each of the database models or classes
 Base = declarative_base()

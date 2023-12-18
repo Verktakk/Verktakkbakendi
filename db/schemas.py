@@ -1,16 +1,16 @@
 from pydantic import BaseModel
 
 
-class ItemBase(BaseModel):
+class ProfileBase(BaseModel):
     title: str
     description: str | None = None
 
 
-class ItemCreate(ItemBase):
+class ProfileCreate(ProfileBase):
     pass
 
 
-class Item(ItemBase):
+class Profile(ProfileBase):
     id: int
     owner_id: int
 
@@ -29,7 +29,7 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     is_active: bool
-    items: list[Item] = []
+    Profiles: list[Profile] = []
 
     class Config:
         from_attributes = True
