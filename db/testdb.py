@@ -3,8 +3,8 @@ from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
 
-from models import User, Profile
-from database import Base
+from .models import User, Profile
+from .database import Base
 
 
 load_dotenv('.env.development')
