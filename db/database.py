@@ -5,9 +5,9 @@ from sqlalchemy.dialects.postgresql import psycopg2
 import os
 from dotenv import load_dotenv
 
-load_dotenv('.env.development')
-dbpassword = os.getenv('DBPASSWORD')
-DATABASE_URL = f"postgresql://maxhgeaz:{dbpassword}@trumpet.db.elephantsql.com/maxhgeaz"
+from constants import AppConfig
+
+DATABASE_URL = f"postgresql://maxhgeaz:{AppConfig.DB_PASSWORD}@trumpet.db.elephantsql.com/maxhgeaz"
 engine = create_engine(DATABASE_URL, connect_args={"sslmode": "require"})
 
 # Each instance of the SessonLocal class will be a db session

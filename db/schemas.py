@@ -19,6 +19,7 @@ class Profile(ProfileBase):
 
 
 class UserBase(BaseModel):
+    name: str
     email: str
 
 
@@ -33,3 +34,7 @@ class User(UserBase):
 
     class Config:
         from_attributes = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
