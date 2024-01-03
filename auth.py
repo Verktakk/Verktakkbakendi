@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 from db.database import SessionLocal
 from db import schemas
 from db import models
-
+from db import crud
 from constants import AppConfig
 
 router = APIRouter(
@@ -39,8 +39,17 @@ async def create_user(db: db_dependency,
         name=create_user_request.name,
         hashed_password=bcrypt_context.hash(create_user_request.password),
     )
+    logging.error(user)
     db.add(user)
-    db.commit() 
+    db.commit()
+
+    # except Exception as e:
+    #     # Log the error or handle it in a way that makes sense for your application
+    #     logging.error(e)
+    #     # You might want to rollback the database session in case of an error
+    #     db.rollback()
+    #     # Raise an HTTPException with a 500 Internal Server Error status code
+    #     raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @router.post("/token", response_model=schemas.Token)
 async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],

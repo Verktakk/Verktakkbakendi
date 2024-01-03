@@ -1,0 +1,51 @@
+2024-01-02 21:39:40 [ERROR] - name 'bcrypt_context' is not defined
+2024-01-02 21:39:51 [ERROR] - name 'bcrypt_context' is not defined
+2024-01-02 21:39:57 [ERROR] - name 'bcrypt_context' is not defined
+2024-01-02 21:45:20 [WARNING] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "c:\Users\hallaei\HI\Verktakk\Backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-01-02 21:45:20 [DEBUG] - detected 'bcrypt' backend, version '<unknown>'
+2024-01-02 21:45:20 [DEBUG] - 'bcrypt' backend lacks $2$ support, enabling workaround
+2024-01-02 21:46:12 [WARNING] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "c:\Users\hallaei\HI\Verktakk\Backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-01-02 21:46:12 [DEBUG] - detected 'bcrypt' backend, version '<unknown>'
+2024-01-02 21:46:12 [DEBUG] - 'bcrypt' backend lacks $2$ support, enabling workaround
+2024-01-02 21:48:26 [WARNING] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "c:\Users\hallaei\HI\Verktakk\Backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-01-02 21:48:26 [DEBUG] - detected 'bcrypt' backend, version '<unknown>'
+2024-01-02 21:48:26 [DEBUG] - 'bcrypt' backend lacks $2$ support, enabling workaround
+2024-01-02 21:50:27 [WARNING] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "c:\Users\hallaei\HI\Verktakk\Backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-01-02 21:50:27 [DEBUG] - detected 'bcrypt' backend, version '<unknown>'
+2024-01-02 21:50:27 [DEBUG] - 'bcrypt' backend lacks $2$ support, enabling workaround
+2024-01-02 21:51:30 [WARNING] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "c:\Users\hallaei\HI\Verktakk\Backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-01-02 21:51:30 [DEBUG] - detected 'bcrypt' backend, version '<unknown>'
+2024-01-02 21:51:30 [DEBUG] - 'bcrypt' backend lacks $2$ support, enabling workaround
+2024-01-02 21:52:10 [WARNING] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "c:\Users\hallaei\HI\Verktakk\Backend\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-01-02 21:52:10 [DEBUG] - detected 'bcrypt' backend, version '<unknown>'
+2024-01-02 21:52:10 [DEBUG] - 'bcrypt' backend lacks $2$ support, enabling workaround
