@@ -7,10 +7,10 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
-from db.database import SessionLocal
-from db import schemas
-from db import models
-from db import crud
+from app.db.database import SessionLocal
+from app.db import schemas
+from app.db import models
+from app.db import crud
 from constants import AppConfig
 
 router = APIRouter(
