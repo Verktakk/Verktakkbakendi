@@ -52,15 +52,14 @@ class Review(Base):
     __tablename__ = 'Review'
 
     id = Column(Integer, primary_key=True)
-    joblisting_id = Column(Integer, ForeignKey('Seller.id'))
+    seller_id = Column(Integer, ForeignKey('Seller.id'))
     profile_id = Column(Integer, ForeignKey('Profile.id'))
+    listing_id = Column(Integer, ForeignKey('JobListing.id'), unique=True)  # One-to-One relationship with JobListing
     content = Column(String)
     rating = Column(Integer)
     
-    listing_id = Column(Integer, ForeignKey('JobListing.id'), unique=True)  # One-to-One relationship with JobListing
-    profile_id = Column(Integer, ForeignKey('Profile.id'), unique=True)  # One-to-One relationship with Profile
     
-    joblisting = relationship("JobListing", back_populates="review", uselist=False)  # Back-reference to JobListing model
+    job_listing = relationship("JobListing", back_populates="review", uselist=False)  # Back-reference to JobListing model
     profile = relationship("Profile", back_populates="review", uselist=False)  # Back-reference to Profile model
     
 class JobListing(Base):
@@ -83,10 +82,11 @@ class Tag(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, index=True)
-    
-    job_listing_tag_association = Table(
-        'job_listing_tag_association',
-        Base.metadata,
-        Column('job_listing_id', Integer, ForeignKey('JobListing.id')),
-        Column('tag_id', Integer, ForeignKey('Tag.id'))
-    )
+    job_listings = relationship("JobListing", secondary="job_listing_tag_association", back_populates="tags")
+
+job_listing_tag_association = Table(
+    'job_listing_tag_association',
+    Base.metadata,
+    Column('job_listing_id', Integer, ForeignKey('JobListing.id')),
+    Column('tag_id', Integer, ForeignKey('Tag.id'))
+)

@@ -7,11 +7,13 @@ from app.db import models
 from app.db import schemas
 from app.db.database import SessionLocal, engine
 import app.routes.auth as auth
+import app.routes.profile as profileRouter
 from logs.logging_config import setup_logging
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+app.include_router(profileRouter.router)
 app.include_router(auth.router)
 
 @app.on_event("startup")
@@ -56,13 +58,6 @@ async def read_user(user_id: int, db: db_dependency):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
-
-@app.get("/profiles/{profile_id}", response_model=schemas.Profile)
-async def read_profile(profile_id: int, db: db_dependency):
-    db_profile = crud.get_profile(db, profile_id=profile_id)
-    if db_profile is None:
-        raise HTTPException(status_code=404, detail="Profile not found")
-    return db_profile
 
 @app.get("/joblistings/{joblisting_id}", response_model=schemas.JobListing)
 async def read_joblisting(joblisting_id: int, db: db_dependency):
