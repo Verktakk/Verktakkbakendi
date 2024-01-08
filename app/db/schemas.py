@@ -90,7 +90,7 @@ class JobListingCreate(JobListingBase):
         
 class JobListing(JobListingBase):
     id: int
-    seller_id: int
+    # seller_id: int
     title: str
     description: str
     tags: Optional[List[Tag]]
