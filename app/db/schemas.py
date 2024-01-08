@@ -10,6 +10,10 @@ class ProfileBase(BaseModel):
 class ProfileCreate(ProfileBase):
     pass
 
+class ProfileUpdate(ProfileBase):
+    description: str
+    photo_url: str
+
 
 class Profile(ProfileBase):
     id: int

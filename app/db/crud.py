@@ -7,7 +7,6 @@ from . import schemas
 async def get_user(db: Session, user_id: int):
     return await db.query(models.User).filter(models.User.id == user_id).first()
 
-
 async def get_user_by_email(db: Session, email: str):
     return await db.query(models.User).filter(models.User.email == email).first()
 
@@ -16,8 +15,18 @@ async def get_users(db: Session, skip: int = 0, limit: int = 100):
     return await db.query(models.User).offset(skip).limit(limit).all()
 
 # Profile CRUD
-async def get_profile(db: Session, skip: int = 0, limit: int = 100):
-    return await db.query(models.Profile).offset(skip).limit(limit).all()
+async def get_profile(db: Session, profile_id: int):
+    return await db.query(models.Profile).filter(models.Profile.id == profile_id).first()
+
+async def update_profile(db: Session, profile_data: schemas.ProfileUpdate, profile_id: int):
+    profile = await db.query(models.Profile).filter(models.Profile.id == profile_id).first()
+    if profile is None:
+        return False
+    for key, value in profile_data.model_dump(exclude_unset=True):
+        setattr(profile, key, value)
+    db.commit()
+    db.refresh(profile)
+    return profile
 
 async def create_user_profile(db: Session, profile: schemas.ProfileCreate, user_id: int):
     db_profile = models.Profile(**profile.dict(), owner_id=user_id)
