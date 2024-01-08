@@ -11,6 +11,7 @@ from logs.logging_config import setup_logging
 import app.routes.profile as profileRouter
 import app.routes.auth as authRouter
 import app.routes.user as userRouter
+import app.routes.jobs as jobRouter
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -18,6 +19,7 @@ app = FastAPI()
 app.include_router(profileRouter.router)
 app.include_router(authRouter.router)
 app.include_router(userRouter.router)
+app.include_router(jobRouter.router)
 
 @app.on_event("startup")
 def startup_event():
@@ -49,12 +51,12 @@ db_dependency = Annotated[Session, Depends(get_db)]
 # used to make sure user is authenticated when accessing routes
 user_dependency = Annotated[dict, Depends(authRouter.get_current_user)]
 
-@app.get("/joblistings/{joblisting_id}", response_model=schemas.JobListing)
-async def read_joblisting(joblisting_id: int, db: db_dependency):
-    db_joblisting = crud.get_joblisting(db, joblisting_id=joblisting_id)
-    if db_joblisting is None:
-        raise HTTPException(status_code=404, detail="JobListing not found")
-    return db_joblisting
+# @app.get("/joblistings/{joblisting_id}", response_model=schemas.JobListing)
+# async def read_joblisting(joblisting_id: int, db: db_dependency):
+#     db_joblisting = crud.get_joblisting(db, joblisting_id=joblisting_id)
+#     if db_joblisting is None:
+#         raise HTTPException(status_code=404, detail="JobListing not found")
+#     return db_joblisting
 
 @app.get("/sellers/{seller_id}", response_model=schemas.Seller)
 async def read_seller(seller_id: int, db: db_dependency):
