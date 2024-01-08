@@ -4,7 +4,6 @@ from typing import List, Optional
 # Profile
 class ProfileBase(BaseModel):
     title: str
-    description: str | None = None
 
 
 class ProfileCreate(ProfileBase):
@@ -13,11 +12,16 @@ class ProfileCreate(ProfileBase):
 class ProfileUpdate(ProfileBase):
     description: str
     photo_url: str
+    poc: str
 
 
 class Profile(ProfileBase):
     id: int
     owner_id: int
+    description: str
+    photo_url: str
+    phone_number: str
+    poc: str
 
     class Config:
         from_attributes = True
