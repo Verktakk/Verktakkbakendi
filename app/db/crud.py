@@ -69,7 +69,6 @@ async def create_tag(db: Session, tag: schemas.TagCreate, joblisting_id: int):
     return db_tag
 
 # JobListing CRUD
-
 async def get_joblistings(db: Session, skip: int = 0, limit: int = 100):
     return await db.query(models.JobListing).offset(skip).limit(limit).all()
 
