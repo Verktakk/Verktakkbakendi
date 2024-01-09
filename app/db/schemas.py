@@ -11,11 +11,15 @@ class ProfileCreate(ProfileBase):
     pass
 
 class ProfileUpdate(ProfileBase):
-    pass
+    poc: str
 
 class Profile(ProfileBase):
     id: int
     owner_id: int
+    description: str
+    photo_url: str
+    phone_number: str
+    poc: str
 
     class Config:
         from_attributes = True
