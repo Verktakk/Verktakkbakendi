@@ -3,17 +3,15 @@ from typing import List, Optional
 
 # Profile
 class ProfileBase(BaseModel):
-    title: str
+    name: str
     description: str | None = None
-
+    photo_url: str
 
 class ProfileCreate(ProfileBase):
     pass
 
 class ProfileUpdate(ProfileBase):
-    description: str
-    photo_url: str
-
+    pass
 
 class Profile(ProfileBase):
     id: int
@@ -24,17 +22,17 @@ class Profile(ProfileBase):
 
 # User
 class UserBase(BaseModel):
-    name: str
     email: str
 
 
 class UserCreate(UserBase):
-    password: str
+    phone_number: str
+    profile: Optional[ProfileCreate] = None
 
 
 class User(UserBase):
     id: int
-    is_active: bool
+    phone_number: str
     profile: Optional[Profile] = None
 
     class Config:

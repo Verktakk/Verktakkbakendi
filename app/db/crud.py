@@ -5,7 +5,7 @@ from . import schemas
 
 # User CRUD
 async def get_user(db: Session, user_id: int):
-    return await db.query(models.User).filter(models.User.id == user_id).first()
+    return db.query(models.User).filter(models.User.id == user_id).first()
 
 async def get_user_by_email(db: Session, email: str):
     return await db.query(models.User).filter(models.User.email == email).first()
