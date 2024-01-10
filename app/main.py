@@ -23,7 +23,6 @@ app.include_router(userRouter.router)
 @app.on_event("startup")
 def startup_event():
     setup_logging()
-    database.init_db()
 
 origins = [
     "http://localhost",
