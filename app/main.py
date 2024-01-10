@@ -1,10 +1,11 @@
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import Annotated
 from app.db import crud
 from app.db import models
 from app.db import schemas
+from app.db import database
 from app.db.database import SessionLocal, engine
 from logs.logging_config import setup_logging
 
@@ -22,6 +23,7 @@ app.include_router(userRouter.router)
 @app.on_event("startup")
 def startup_event():
     setup_logging()
+    database.init_db()
 
 origins = [
     "http://localhost",
