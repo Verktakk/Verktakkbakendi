@@ -5,7 +5,7 @@ load_dotenv('.env.development')
 
 class AppConfig:
     
-    DB_PASSWORD = os.getenv('DBPASSWORD')
+    DATABASE_URL = os.getenv('DATABASE_URL')
     SECRET_KEY = os.getenv('SECRET_KEY')
     HASH_ALGORITHM = os.getenv('HASH_ALG')
     TOKEN_EXPIRE_MINUTES: int = 30
