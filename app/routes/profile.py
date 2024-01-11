@@ -26,14 +26,14 @@ db_dependency = Annotated[Session, Depends(get_db)]
 
 @router.get("/{profile_id}", response_model=schemas.Profile)
 async def read_profile(profile_id: int, db: db_dependency):
-    db_profile = crud.get_profile(db, profile_id=profile_id)
-    if db_profile is None:
+    profile: models.Profile = await crud.get_profile(db, profile_id=profile_id)
+    if profile is None:
         raise HTTPException(status_code=404, detail="Profile not found")
-    return db_profile
+    return schemas.Profile(**profile.__dict__)
 
 @router.patch("/{profile_id}", response_model=schemas.Profile)
 async def update_profile(profile_id: int, profile_data: schemas.ProfileUpdate, db: db_dependency):
-    updated_profile = await crud.update_profile(db, profile_data, profile_id)
+    updated_profile: models.Profile = await crud.update_profile(db, profile_data, profile_id)
     if not updated_profile:
         raise HTTPException(status_code=404, detail="Profile not found")
-    return updated_profile
+    return schemas.Profile(**updated_profile.__dict__)
