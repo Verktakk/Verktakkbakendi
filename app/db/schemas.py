@@ -3,23 +3,26 @@ from typing import List, Optional
 
 # Profile
 class ProfileBase(BaseModel):
-    name: str
-    description: str | None = None
-    photo_url: str
-
-class ProfileCreate(ProfileBase):
     pass
 
+class ProfileCreate(ProfileBase):
+    name: str
+
+
 class ProfileUpdate(ProfileBase):
-    poc: str
+    poc: Optional[str] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    photo_url: Optional[str] = None
+
 
 class Profile(ProfileBase):
     id: int
-    owner_id: int
-    description: str
-    photo_url: str
-    phone_number: str
-    poc: str
+    user_id: int
+    name: Optional[str] = None  
+    description: Optional[str] = None  
+    photo_url: Optional[str] = None  
+    poc: Optional[str] = None  
 
     class Config:
         from_attributes = True

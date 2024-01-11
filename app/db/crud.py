@@ -8,21 +8,24 @@ async def get_user(db: Session, user_id: int):
     return db.query(models.User).filter(models.User.id == user_id).first()
 
 async def get_user_by_email(db: Session, email: str):
-    return await db.query(models.User).filter(models.User.email == email).first()
+    return db.query(models.User).filter(models.User.email == email).first()
 
 
 async def get_users(db: Session, skip: int = 0, limit: int = 100):
-    return await db.query(models.User).offset(skip).limit(limit).all()
+    return db.query(models.User).offset(skip).limit(limit).all()
 
 # Profile CRUD
 async def get_profile(db: Session, profile_id: int):
-    return await db.query(models.Profile).filter(models.Profile.id == profile_id).first()
+    return db.query(models.Profile).filter(models.Profile.id == profile_id).first()
+
+def get_profile_by_user_id(db: Session, user_id: int):
+    return db.query(models.Profile).filter(models.Profile.user_id == user_id).first()
 
 async def update_profile(db: Session, profile_data: schemas.ProfileUpdate, profile_id: int):
-    profile = await db.query(models.Profile).filter(models.Profile.id == profile_id).first()
+    profile = db.query(models.Profile).filter(models.Profile.id == profile_id).first()
     if profile is None:
         return False
-    for key, value in profile_data.model_dump(exclude_unset=True):
+    for key, value in profile_data.model_dump(exclude_unset=True).items():
         setattr(profile, key, value)
     db.commit()
     db.refresh(profile)
@@ -37,7 +40,7 @@ async def create_user_profile(db: Session, profile: schemas.ProfileCreate, user_
 
 # Seller CRUD
 async def get_seller(db: Session, skip: int = 0, limit: int = 100):
-    return await db.query(models.Seller).offset(skip).limit(limit).all()
+    return db.query(models.Seller).offset(skip).limit(limit).all()
 
 async def create_seller(db: Session, seller: schemas.SellerCreate, profile_id: int):
     db_seller = models.Seller(**seller.dict(), profile_id=profile_id)
@@ -48,7 +51,7 @@ async def create_seller(db: Session, seller: schemas.SellerCreate, profile_id: i
 
 # Review CRUD
 async def get_review(db: Session, skip: int = 0, limit: int = 100):
-    return await db.query(models.Review).offset(skip).limit(limit).all()
+    return db.query(models.Review).offset(skip).limit(limit).all()
 
 async def create_review(db: Session, review: schemas.ReviewCreate, profile_id: int):
     db_review = models.Review(**review.dict(), profile_id=profile_id)
@@ -59,7 +62,7 @@ async def create_review(db: Session, review: schemas.ReviewCreate, profile_id: i
 
 # Tag CRUD
 async def get_tag(db: Session, skip: int = 0, limit: int = 100):
-    return await db.query(models.Tag).offset(skip).limit(limit).all()
+    return db.query(models.Tag).offset(skip).limit(limit).all()
 
 async def create_tag(db: Session, tag: schemas.TagCreate, joblisting_id: int):
     db_tag = models.Tag(**tag.dict(), joblisting_id=joblisting_id)
@@ -71,7 +74,7 @@ async def create_tag(db: Session, tag: schemas.TagCreate, joblisting_id: int):
 # JobListing CRUD
 
 async def get_joblisting(db: Session, skip: int = 0, limit: int = 100):
-    return await db.query(models.JobListing).offset(skip).limit(limit).all()
+    return db.query(models.JobListing).offset(skip).limit(limit).all()
 
 async def create_joblisting(db: Session, joblisting: schemas.JobListingCreate, seller_id: int):
     db_joblisting = models.JobListing(**joblisting.dict(), seller_id=seller_id)
